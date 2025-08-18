@@ -1,0 +1,9 @@
+# 允许发送每个模块的 target 产物到构建上下文，用于 COPY 打包
+# 如需忽略，可改为更细粒度（例如忽略 test-classes 等）
+**/.git
+**/.idea
+**/.vscode
+**/.DS_Store
+**/node_modules
+
+

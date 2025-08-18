@@ -1,0 +1,5 @@
+com/zhao/inventory/application/service/InventoryAppService.class
+com/zhao/inventory/infrastructure/persistence/po/InventoryDO.class
+com/zhao/inventory/interfaces/web/InventoryController.class
+com/zhao/inventory/InventoryServiceApplication.class
+com/zhao/inventory/infrastructure/persistence/mapper/InventoryMapper.class
