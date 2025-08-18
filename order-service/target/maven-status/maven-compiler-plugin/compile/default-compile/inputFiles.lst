@@ -1,0 +1,16 @@
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/application/service/OrderAppService.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/remote/account/AccountClient.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/interfaces/dto/CreateOrderRequest.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/OrderServiceApplication.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/application/command/CreateOrderCommand.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/interfaces/web/OrderController.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/persistence/repository/OrderRepositoryInMemory.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/domain/model/order/OrderStatus.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/persistence/mapper/OrderMapper.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/persistence/po/OrderDO.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/config/RestClientConfig.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/remote/inventory/InventoryClient.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/domain/repository/OrderRepository.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/persistence/repository/OrderRepositoryMP.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/interfaces/web/OrderTestController.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/domain/model/order/Order.java

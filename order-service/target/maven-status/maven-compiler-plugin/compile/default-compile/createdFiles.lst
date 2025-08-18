@@ -1,0 +1,16 @@
+com/zhao/order/interfaces/dto/CreateOrderRequest.class
+com/zhao/order/domain/model/order/Order.class
+com/zhao/order/infrastructure/remote/inventory/InventoryClient.class
+com/zhao/order/domain/model/order/OrderStatus.class
+com/zhao/order/interfaces/web/OrderTestController.class
+com/zhao/order/infrastructure/persistence/repository/OrderRepositoryInMemory.class
+com/zhao/order/infrastructure/remote/account/AccountClient.class
+com/zhao/order/infrastructure/persistence/repository/OrderRepositoryMP.class
+com/zhao/order/interfaces/web/OrderController.class
+com/zhao/order/infrastructure/config/RestClientConfig.class
+com/zhao/order/domain/repository/OrderRepository.class
+com/zhao/order/infrastructure/persistence/mapper/OrderMapper.class
+com/zhao/order/infrastructure/persistence/po/OrderDO.class
+com/zhao/order/application/command/CreateOrderCommand.class
+com/zhao/order/application/service/OrderAppService.class
+com/zhao/order/OrderServiceApplication.class
