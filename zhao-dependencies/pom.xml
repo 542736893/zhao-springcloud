@@ -13,6 +13,7 @@
         <spring.boot.version>3.4.8</spring.boot.version>
         <spring.cloud.version>2024.0.2</spring.cloud.version>
         <spring.cloud.alibaba.version>2023.0.1.0</spring.cloud.alibaba.version>
+        <seata.version>1.8.0</seata.version>
         <!-- 可在此集中定义第三方版本，如需使用时再补充 -->
         <mapstruct.version>1.6.2</mapstruct.version>
         <lombok.version>1.18.34</lombok.version>
@@ -57,6 +58,13 @@
                 <version>${spring.boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <!-- Seata -->
+            <dependency>
+                <groupId>io.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>${seata.version}</version>
             </dependency>
 
             <!-- 常用库统一版本（可按需开放） -->

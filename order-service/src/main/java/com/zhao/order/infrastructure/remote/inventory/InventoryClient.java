@@ -1,24 +1,27 @@
 package com.zhao.order.infrastructure.remote.inventory;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
+import com.zhao.common.web.ApiResponse;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Component
-public class InventoryClient {
-    private final RestTemplate restTemplate;
-
-    public InventoryClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
-    public void deduct(Long productId, Integer count) {
-        String url = String.format("http://localhost:8082/api/v1/inventory/deduct?productId=%d&count=%d", productId, count);
-        ResponseEntity<String> resp = restTemplate.postForEntity(url, null, String.class);
-        if (!resp.getStatusCode().is2xxSuccessful()) {
-            throw new RuntimeException("inventory deduct failed");
-        }
-    }
+/**
+ * 库存服务Feign客户端
+ */
+@FeignClient(
+    name = "inventory-service",
+    contextId = "InventoryClient",
+    path = "/api/v1/inventory",
+    fallbackFactory = InventoryClientFallbackFactory.class
+)
+public interface InventoryClient {
+    
+    /**
+     * 扣减库存
+     */
+    @PostMapping("/deduct")
+    ApiResponse<Void> deductInventory(@RequestParam("productId") Long productId, 
+                                    @RequestParam("quantity") Integer quantity);
 }
 
 

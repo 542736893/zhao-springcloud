@@ -1,4 +1,7 @@
 /Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/exception/BusinessException.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/web/GlobalExceptionHandler.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/web/ErrorCode.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/util/TraceIdUtil.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/web/BaseQuery.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/web/ApiResponse.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/common/src/main/java/com/zhao/common/web/PageResponse.java

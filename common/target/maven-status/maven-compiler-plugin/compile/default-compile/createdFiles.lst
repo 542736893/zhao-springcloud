@@ -1,4 +1,7 @@
 com/zhao/common/web/GlobalExceptionHandler.class
+com/zhao/common/web/BaseQuery.class
+com/zhao/common/web/PageResponse.class
 com/zhao/common/web/ErrorCode.class
+com/zhao/common/util/TraceIdUtil.class
 com/zhao/common/exception/BusinessException.class
 com/zhao/common/web/ApiResponse.class
