@@ -17,8 +17,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-08-19T18:59:36+0800",
-    comments = "version: 1.6.2, compiler: javac, environment: Java 17.0.16 (Homebrew)"
+    date = "2025-08-19T20:47:17+0800",
+    comments = "version: 1.6.2, compiler: Eclipse JDT (IDE) 3.42.50.v20250729-0351, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 @Component
 public class OrderAssemblerImpl implements OrderAssembler {
@@ -59,8 +59,8 @@ public class OrderAssemblerImpl implements OrderAssembler {
         orderItemResponse.setUnitPrice( orderItemUnitPriceAmount( orderItem ) );
         orderItemResponse.setSubtotal( orderItemSubtotalAmount( orderItem ) );
         orderItemResponse.setId( orderItem.getId() );
-        orderItemResponse.setProductName( orderItem.getProductName() );
         orderItemResponse.setProductImage( orderItem.getProductImage() );
+        orderItemResponse.setProductName( orderItem.getProductName() );
         orderItemResponse.setQuantity( orderItem.getQuantity() );
 
         return orderItemResponse;
@@ -89,10 +89,10 @@ public class OrderAssemblerImpl implements OrderAssembler {
         OrderResponse.AddressResponse addressResponse = new OrderResponse.AddressResponse();
 
         addressResponse.setFullAddress( address.getFullAddress() );
-        addressResponse.setProvince( address.getProvince() );
         addressResponse.setCity( address.getCity() );
-        addressResponse.setDistrict( address.getDistrict() );
         addressResponse.setDetailAddress( address.getDetailAddress() );
+        addressResponse.setDistrict( address.getDistrict() );
+        addressResponse.setProvince( address.getProvince() );
         addressResponse.setReceiverName( address.getReceiverName() );
         addressResponse.setReceiverPhone( address.getReceiverPhone() );
         addressResponse.setZipCode( address.getZipCode() );

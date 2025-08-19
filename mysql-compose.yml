@@ -8,6 +8,8 @@ services:
       MYSQL_ROOT_HOST: "%"
     ports:
       - "3306:3306"
+    networks:
+      - zhao-network
     volumes:
       - mysql-data:/var/lib/mysql
     command:
@@ -23,6 +25,11 @@ services:
       timeout: 5s
       retries: 30
       start_period: 60s
+
+networks:
+  zhao-network:
+    external: true
+    name: zhao-springcloud_zhao-network
 
 volumes:
   mysql-data:

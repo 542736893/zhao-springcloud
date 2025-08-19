@@ -40,7 +40,7 @@ services:
     networks:
       - zhao-network
     volumes:
-      - seata-config:/root/seata-config
+      - ./seata-config:/seata-server/resources
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8091"]
       interval: 10s
@@ -63,6 +63,7 @@ services:
 networks:
   zhao-network:
     driver: bridge
+    name: zhao-springcloud_zhao-network
 
 volumes:
   nacos-data:

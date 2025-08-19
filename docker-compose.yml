@@ -6,15 +6,33 @@ services:
     image: zhao/order-service:1.0.0
     ports:
       - "8081:8081"
+    networks:
+      - zhao-network
+    environment:
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos-server:8848
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos-server:8848
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-8.0:3306/order?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      - SPRING_CLOUD_SENTINEL_TRANSPORT_DASHBOARD=sentinel-dashboard:8858
+      - SEATA_REGISTRY_NACOS_SERVER_ADDR=nacos-server:8848
+      - SEATA_CONFIG_NACOS_SERVER_ADDR=nacos-server:8848
   inventory-service:
     build:
       context: ./inventory-service
     image: zhao/inventory-service:1.0.0
     ports:
       - "8082:8082"
+    networks:
+      - zhao-network
   account-service:
     build:
       context: ./account-service
     image: zhao/account-service:1.0.0
     ports:
       - "8083:8083"
+    networks:
+      - zhao-network
+
+networks:
+  zhao-network:
+    external: true
+    name: zhao-springcloud_zhao-network
