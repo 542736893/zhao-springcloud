@@ -31,6 +31,7 @@ public class OrderController {
      */
     @PostMapping
     @Operation(summary = "创建订单", description = "创建新订单")
+    @SentinelResource(value = "createOrder")
     public ApiResponse<OrderResponse> createOrder(@Valid @RequestBody CreateOrderCommand command) {
         log.info("收到创建订单请求，用户ID: {}", command.getUserId());
         OrderResponse response = orderAppService.createOrder(command);
@@ -42,6 +43,7 @@ public class OrderController {
      */
     @GetMapping("/{orderId}")
     @Operation(summary = "查询订单", description = "根据订单ID查询订单详情")
+    @SentinelResource(value = "getOrderById")
     public ApiResponse<OrderResponse> getOrderById(@PathVariable Long orderId) {
         log.info("查询订单，订单ID: {}", orderId);
         OrderResponse response = orderAppService.getOrderById(orderId);
@@ -53,6 +55,7 @@ public class OrderController {
      */
     @GetMapping("/number/{orderNumber}")
     @Operation(summary = "根据订单号查询订单", description = "根据订单号查询订单详情")
+    @SentinelResource(value = "getOrderByOrderNumber")
     public ApiResponse<OrderResponse> getOrderByOrderNumber(@PathVariable String orderNumber) {
         log.info("根据订单号查询订单，订单号: {}", orderNumber);
         OrderResponse response = orderAppService.getOrderByOrderNumber(orderNumber);
@@ -64,6 +67,7 @@ public class OrderController {
      */
     @GetMapping("/user/{userId}")
     @Operation(summary = "查询用户订单列表", description = "根据用户ID查询订单列表")
+    @SentinelResource(value = "getOrdersByUserId")
     public ApiResponse<List<OrderResponse>> getOrdersByUserId(@PathVariable Long userId) {
         log.info("查询用户订单列表，用户ID: {}", userId);
         List<OrderResponse> response = orderAppService.getOrdersByUserId(userId);
@@ -75,6 +79,7 @@ public class OrderController {
      */
     @PostMapping("/{orderId}/cancel")
     @Operation(summary = "取消订单", description = "取消指定订单")
+    @SentinelResource(value = "cancelOrder")
     public ApiResponse<Void> cancelOrder(@PathVariable Long orderId) {
         log.info("取消订单，订单ID: {}", orderId);
         orderAppService.cancelOrder(orderId);
@@ -86,6 +91,7 @@ public class OrderController {
      */
     @PostMapping("/{orderId}/pay")
     @Operation(summary = "支付订单", description = "支付指定订单")
+    @SentinelResource(value = "payOrder")
     public ApiResponse<Void> payOrder(@PathVariable Long orderId) {
         log.info("支付订单，订单ID: {}", orderId);
         orderAppService.payOrder(orderId);
@@ -97,6 +103,7 @@ public class OrderController {
      */
     @PostMapping("/{orderId}/ship")
     @Operation(summary = "订单发货", description = "订单发货")
+    @SentinelResource(value = "shipOrder")
     public ApiResponse<Void> shipOrder(@PathVariable Long orderId) {
         log.info("订单发货，订单ID: {}", orderId);
         orderAppService.shipOrder(orderId);
@@ -108,6 +115,7 @@ public class OrderController {
      */
     @PostMapping("/{orderId}/complete")
     @Operation(summary = "完成订单", description = "完成指定订单")
+    @SentinelResource(value = "completeOrder")
     public ApiResponse<Void> completeOrder(@PathVariable Long orderId) {
         log.info("完成订单，订单ID: {}", orderId);
         orderAppService.completeOrder(orderId);
@@ -118,11 +126,15 @@ public class OrderController {
      * 健康检查
      */
     @GetMapping("/ping")
-    @SentinelResource(value = "ping", blockHandler = "handleBlock", fallback = "handleFallback")
+    @SentinelResource(value = "ping")
     @Operation(summary = "健康检查", description = "订单服务健康检查")
     public ApiResponse<String> ping() {
-        return ApiResponse.ok("order-service is running");
+        return ApiResponse.ok("order-service is running1");
     }
+    
+    /**
+     * Sentinel流控处理方法
+     */
+    
+
 }
-
-

@@ -32,6 +32,16 @@ services:
     environment:
       - SEATA_PORT=8091
       - TZ=Asia/Shanghai
+      - SEATA_CONFIG_TYPE=nacos
+      - SEATA_CONFIG_NACOS_SERVER_ADDR=nacos-server:8848
+      - SEATA_CONFIG_NACOS_NAMESPACE=dev
+      - SEATA_CONFIG_NACOS_GROUP=SEATA_GROUP
+      - SEATA_CONFIG_NACOS_DATA_ID=seataServer.properties
+      - SEATA_REGISTRY_TYPE=nacos
+      - SEATA_REGISTRY_NACOS_SERVER_ADDR=nacos-server:8848
+      - SEATA_REGISTRY_NACOS_NAMESPACE=dev
+      - SEATA_REGISTRY_NACOS_GROUP=SEATA_GROUP
+      - SEATA_REGISTRY_NACOS_CLUSTER=default
     expose:
       - 8091
       - 7091
@@ -39,8 +49,9 @@ services:
       - nacos-server
     networks:
       - zhao-network
-    volumes:
-      - ./seata-config:/seata-server/resources
+    # 使用 Nacos 配置中心，无需本地挂载
+    # volumes:
+    #   - /Users/zhaozb/Documents/Code/zhao-springcloud/seata-config:/seata-server/resources
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8091"]
       interval: 10s
@@ -53,6 +64,8 @@ services:
     container_name: sentinel-dashboard
     ports:
       - "8858:8858"
+    networks:
+      - zhao-network
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8858"]
       interval: 10s
@@ -67,4 +80,3 @@ networks:
 
 volumes:
   nacos-data:
-  seata-config:

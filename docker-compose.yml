@@ -9,6 +9,7 @@ services:
     networks:
       - zhao-network
     environment:
+      - JAVA_OPTS=-Dproject.name=order-service -Dcsp.sentinel.dashboard.server=sentinel-dashboard:8858 -Dcsp.sentinel.api.port=8719
       - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos-server:8848
       - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos-server:8848
       - SPRING_DATASOURCE_URL=jdbc:mysql://mysql-8.0:3306/order?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
@@ -23,6 +24,14 @@ services:
       - "8082:8082"
     networks:
       - zhao-network
+    environment:
+      - JAVA_OPTS=-Dproject.name=inventory-service -Dcsp.sentinel.dashboard.server=sentinel-dashboard:8858 -Dcsp.sentinel.api.port=8720
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos-server:8848
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos-server:8848
+      - SPRING_CLOUD_SENTINEL_TRANSPORT_DASHBOARD=sentinel-dashboard:8858
+      - SEATA_REGISTRY_NACOS_SERVER_ADDR=nacos-server:8848
+      - SEATA_CONFIG_NACOS_SERVER_ADDR=nacos-server:8848
+
   account-service:
     build:
       context: ./account-service
@@ -31,6 +40,13 @@ services:
       - "8083:8083"
     networks:
       - zhao-network
+    environment:
+      - JAVA_OPTS=-Dproject.name=account-service -Dcsp.sentinel.dashboard.server=sentinel-dashboard:8858 -Dcsp.sentinel.api.port=8721
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos-server:8848
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=nacos-server:8848
+      - SPRING_CLOUD_SENTINEL_TRANSPORT_DASHBOARD=sentinel-dashboard:8858
+      - SEATA_REGISTRY_NACOS_SERVER_ADDR=nacos-server:8848
+      - SEATA_CONFIG_NACOS_SERVER_ADDR=nacos-server:8848
 
 networks:
   zhao-network:

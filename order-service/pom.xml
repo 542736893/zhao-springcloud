@@ -17,6 +17,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!-- Spring AOP for @SentinelResource aspect weaving -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
         
         <!-- Spring Boot Validation Starter -->
         <dependency>
@@ -53,7 +58,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-        
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>1.8.4</version> <!-- 确保版本与Sentinel控制台一致 -->
+        </dependency>
+
         <!-- Seata Distributed Transaction -->
         <dependency>
             <groupId>io.seata</groupId>
