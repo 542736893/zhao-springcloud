@@ -1,0 +1,58 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+.factorypath
+.vscode/
+
+# Build outputs
+**/target/
+out/
+bin/
+
+# Maven
+.mvn/timing.properties
+# 保留 Maven Wrapper（不要忽略 mvnw/mvnw.cmd/.mvn/wrapper）
+
+# Logs
+*.log
+logs/
+**/logs/
+
+# Test & reports
+surefire-reports/
+failsafe-reports/
+site/
+jacoco.exec
+coverage/
+.coverage
+
+# Generated sources
+**/target/generated-sources/
+**/target/generated-test-sources/
+
+# Node (if any UI or scripts)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker / Env
+.env
+docker.env
+
+# Database local files
+*.h2.db
+*.mv.db
+
+# Misc build artifacts
+*.original
+*.cache

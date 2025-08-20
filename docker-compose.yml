@@ -1,5 +1,16 @@
 version: "3.9"
 services:
+  gateway:
+    build:
+      context: ./gateway
+    image: zhao/gateway:1.0.0
+    ports:
+      - "8080:8080"
+    networks:
+      - zhao-network
+    environment:
+      - SPRING_CLOUD_NACOS_DISCOVERY_SERVER_ADDR=nacos-server:8848
+      - JAVA_OPTS=-Dproject.name=gateway
   order-service:
     build:
       context: ./order-service

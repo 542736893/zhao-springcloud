@@ -133,6 +133,10 @@ public class ApiResponse<T> {
         return this;
     }
 
+    public Boolean isSuccess() {
+        return ErrorCode.SUCCESS.getCode().equals(code);
+    }
+
     // Getter and Setter methods
     public String getCode() {
         return code;

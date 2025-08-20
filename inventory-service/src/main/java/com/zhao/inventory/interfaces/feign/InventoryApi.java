@@ -28,7 +28,7 @@ public interface InventoryApi {
             @Parameter(description = "扣减数量", required = true, example = "10")
             @RequestParam("quantity") Integer quantity
     );
-    
+
     /**
      * 恢复库存
      */

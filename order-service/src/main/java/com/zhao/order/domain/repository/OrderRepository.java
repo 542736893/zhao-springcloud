@@ -17,7 +17,12 @@ public interface OrderRepository {
      * 保存订单
      */
     Order save(Order order);
-    
+
+    /**
+     * 简单保存订单
+     */
+    Order simpleSave(Order order);
+
     /**
      * 根据ID查找订单
      */

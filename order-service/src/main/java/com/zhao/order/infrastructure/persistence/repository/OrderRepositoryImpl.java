@@ -62,7 +62,16 @@ public class OrderRepositoryImpl implements OrderRepository {
         
         return order;
     }
-    
+
+    @Override
+    public Order simpleSave(Order order) {
+        if (order != null) {
+            OrderDO orderDO = convertToOrderDO(order);
+            orderMapper.insert(orderDO);
+        }
+        return order;
+    }
+
     @Override
     public Optional<Order> findById(OrderId orderId) {
         OrderDO orderDO = orderMapper.selectById(orderId.getValue());
