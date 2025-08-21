@@ -29,6 +29,7 @@
 /Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/domain/factory/OrderFactory.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/domain/model/entity/OrderItem.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/config/SeataConfig.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/interfaces/web/GlobalExceptionHandler.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/interfaces/feign/OrderApi.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/infrastructure/remote/account/AccountClientFallbackFactory.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/order-service/src/main/java/com/zhao/order/application/assembler/OrderAssembler.java

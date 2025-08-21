@@ -11,6 +11,7 @@
 /Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/domain/model/valueobject/Quantity.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/interfaces/dto/response/InventoryResponse.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/domain/model/valueobject/Location.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/interfaces/web/GlobalExceptionHandler.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/domain/model/aggregate/Inventory.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/interfaces/dto/request/DeductInventoryRequest.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/inventory-service/src/main/java/com/zhao/inventory/domain/model/valueobject/WarehouseId.java

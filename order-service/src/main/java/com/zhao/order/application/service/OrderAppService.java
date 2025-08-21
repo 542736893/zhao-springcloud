@@ -16,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -158,6 +159,66 @@ public class OrderAppService {
         order.complete();
         orderRepository.save(order);
         log.info("订单完成成功，订单ID: {}", orderId);
+    }
+
+    /**
+     * 测试分布式事务：本地插入订单 + 远程扣减库存与账户余额。
+     * 成功则提交，任一环节失败抛出异常触发 Seata 全局回滚。
+     */
+    @GlobalTransactional(timeoutMills = 60000, name = "test-seata-tx")
+    public String testSeataTx(Long userId, Long productId, int quantity, double unitPrice) {
+        log.info("[testSeataTx] 开始，userId={}, productId={}, quantity={}, unitPrice={}", userId, productId, quantity, unitPrice);
+
+        // 1) 组装最小下单命令
+        CreateOrderCommand cmd = new CreateOrderCommand();
+        cmd.setUserId(userId);
+        cmd.setProvince("TestProvince");
+        cmd.setCity("TestCity");
+        cmd.setDistrict("TestDistrict");
+        cmd.setDetailAddress("Test Street 001");
+        cmd.setReceiverName("TestReceiver");
+        cmd.setReceiverPhone("13800000000");
+        cmd.setZipCode("000000");
+
+        CreateOrderCommand.CreateOrderItemCommand item = new CreateOrderCommand.CreateOrderItemCommand();
+        item.setProductId(productId);
+        item.setProductName("TestProduct");
+        item.setProductImage(null);
+        item.setUnitPrice(String.valueOf(unitPrice));
+        item.setQuantity(quantity);
+
+        List<CreateOrderCommand.CreateOrderItemCommand> items = new ArrayList<>();
+        items.add(item);
+        cmd.setItems(items);
+
+        try {
+            // 2) 本地插入订单（简单保存）
+            Order order = orderFactory.createFromCommand(cmd);
+            orderRepository.simpleSave(order);
+            log.info("[testSeataTx] 本地订单插入完成，订单号={}", order.getOrderNumber().getValue());
+
+            // 3) 远程扣减库存
+            var invResp = inventoryClient.deductInventory(productId, quantity);
+            if (invResp == null || !Boolean.TRUE.equals(invResp.isSuccess())) {
+                throw new RuntimeException("库存服务扣减失败");
+            }
+            log.info("[testSeataTx] 库存扣减完成");
+
+            // 4) 远程扣减账户余额
+            double totalAmount = unitPrice * quantity;
+            var accResp = accountClient.debitAccount(userId, totalAmount);
+            if (accResp == null || !Boolean.TRUE.equals(accResp.isSuccess())) {
+                throw new RuntimeException("账户服务扣减失败");
+            }
+            log.info("[testSeataTx] 账户扣减完成");
+
+            // 5) 成功
+            log.info("[testSeataTx] 成功，提交事务");
+            return "ok";
+        } catch (Exception ex) {
+            log.error("[testSeataTx] 失败，将回滚: {}", ex.getMessage(), ex);
+            throw ex;
+        }
     }
     
     /**

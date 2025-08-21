@@ -1,4 +1,5 @@
 com/zhao/account/domain/model/valueobject/UserId.class
+com/zhao/account/interfaces/web/GlobalExceptionHandler.class
 com/zhao/account/domain/model/valueobject/AccountId.class
 com/zhao/account/application/query/AccountQuery.class
 com/zhao/account/application/assembler/AccountAssembler.class

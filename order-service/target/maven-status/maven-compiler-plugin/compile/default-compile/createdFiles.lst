@@ -16,6 +16,7 @@ com/zhao/order/interfaces/dto/OrderResponse.class
 com/zhao/order/domain/repository/OrderRepository.class
 com/zhao/order/infrastructure/config/SeataConfig.class
 com/zhao/order/infrastructure/config/MybatisPlusConfig$MyMetaObjectHandler.class
+com/zhao/order/interfaces/web/GlobalExceptionHandler.class
 com/zhao/order/OrderServiceApplication.class
 com/zhao/order/infrastructure/persistence/converter/OrderPOConverterImpl.class
 com/zhao/order/domain/model/entity/OrderItem.class

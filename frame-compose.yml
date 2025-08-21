@@ -99,6 +99,61 @@ services:
       retries: 30
       start_period: 60s
 
+  rocketmq-namesrv:
+    image: apache/rocketmq:5.3.1
+    container_name: rocketmq-namesrv
+    platform: linux/arm64/v8
+    ports:
+      - "9876:9876"
+    command: ["sh", "-c", "cd /home/rocketmq/rocketmq-5.3.1/bin && ./mqnamesrv"]
+    networks:
+      - zhao-network
+    healthcheck:
+      test: ["CMD", "bash", "-lc", "</dev/tcp/127.0.0.1/9876"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  rocketmq-broker:
+    image: apache/rocketmq:5.3.1
+    container_name: rocketmq-broker
+    platform: linux/arm64/v8
+    depends_on:
+      - rocketmq-namesrv
+    ports:
+      - "10911:10911"  # Broker listening port
+      - "10909:10909"  # HA sync port
+    command: ["sh", "-c", "echo 'brokerClusterName=DefaultCluster\nbrokerName=broker-a\nbrokerId=0\nlistenPort=10911\nnamesrvAddr=rocketmq-namesrv:9876\nautoCreateTopicEnable=true\nautoCreateSubscriptionGroup=true' > /home/rocketmq/broker.conf && cd /home/rocketmq/rocketmq-5.3.1/bin && ./mqbroker -c /home/rocketmq/broker.conf"]
+    environment:
+      - JAVA_OPT_EXT=-Xms256m -Xmx256m -Xmn128m
+    networks:
+      - zhao-network
+    healthcheck:
+      test: ["CMD", "bash", "-lc", "</dev/tcp/127.0.0.1/10911"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  rocketmq-dashboard:
+    image: apacherocketmq/rocketmq-dashboard:latest
+    container_name: rocketmq-dashboard
+    ports:
+      - "8088:8080"
+    environment:
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=rocketmq-namesrv:9876
+    depends_on:
+      - rocketmq-namesrv
+    networks:
+      - zhao-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8088"]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+      start_period: 30s
+
 networks:
   zhao-network:
     driver: bridge
@@ -106,3 +161,4 @@ networks:
 
 volumes:
   nacos-data:
+  mysql-data:

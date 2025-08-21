@@ -38,7 +38,7 @@ public class OrderRepositoryImpl implements OrderRepository {
             orderMapper.insert(orderDO);
             
             // 设置订单ID
-            order.getId().setValue(orderDO.getId());
+            order.assignId(orderDO.getId());
             
             // 保存订单项
             if (!order.getOrderItems().isEmpty()) {
@@ -68,6 +68,8 @@ public class OrderRepositoryImpl implements OrderRepository {
         if (order != null) {
             OrderDO orderDO = convertToOrderDO(order);
             orderMapper.insert(orderDO);
+            // 回填数据库生成的ID
+            order.assignId(orderDO.getId());
         }
         return order;
     }
@@ -206,8 +208,7 @@ public class OrderRepositoryImpl implements OrderRepository {
         );
         
         // 设置ID和时间
-        order.getId().setValue(orderDO.getId());
-        // 这里需要添加setter方法到Order类
+        order.assignId(orderDO.getId());
         
         // 添加订单项
         orderItemDOs.forEach(itemDO -> {

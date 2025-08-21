@@ -38,7 +38,8 @@ public class Order {
      */
     public static Order create(UserId userId, OrderNumber orderNumber, Address shippingAddress) {
         Order order = new Order();
-        order.id = OrderId.generate();
+        // 由数据库自增生成ID，创建时不预置ID
+        order.id = null;
         order.userId = userId;
         order.orderNumber = orderNumber;
         order.status = OrderStatus.CREATED;
@@ -49,6 +50,13 @@ public class Order {
         order.discountAmount = Money.ZERO;
         order.actualAmount = Money.ZERO;
         return order;
+    }
+
+    /**
+     * 持久化后由仓储赋值数据库生成的ID
+     */
+    public void assignId(Long id) {
+        this.id = OrderId.of(id);
     }
     
     /**

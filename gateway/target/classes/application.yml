@@ -7,7 +7,9 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: nacos:8848
+        server-addr: nacos-server:8848
+        namespace: dev
+        group: DEFAULT_GROUP
         fail-fast: false
         retry:
           times: 10
@@ -16,9 +18,32 @@ spring:
         password: nacos
     compatibility-verifier:
       enabled: false
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/api/v1/order/**
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/v1/inventory/**
+        - id: account-service
+          uri: lb://account-service
+          predicates:
+            - Path=/api/v1/account/**
+  main:
+    web-application-type: reactive
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: '*'
+  endpoint:
+    health:
+      show-details: always

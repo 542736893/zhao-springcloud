@@ -70,6 +70,12 @@ spring:
       enabled: true
       eager: true
 
+    # RocketMQ配置
+    rocketmq:
+      name-server: rocketmq-namesrv:9876
+      producer:
+        group: ${spring.application.name}-producer
+
 # Seata配置
 seata:
   enabled: true

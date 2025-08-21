@@ -8,6 +8,8 @@ spring:
     nacos:
       discovery:
         server-addr: nacos-server:8848
+        namespace: dev
+        group: DEFAULT_GROUP
         fail-fast: false
         retry:
           times: 10
@@ -34,6 +36,8 @@ spring:
           uri: lb://account-service
           predicates:
             - Path=/api/v1/account/**
+  main:
+    web-application-type: reactive
 
 management:
   endpoints:

@@ -28,4 +28,5 @@ com/zhao/inventory/interfaces/dto/request/QueryInventoryRequest.class
 com/zhao/inventory/application/command/DeductInventoryCommand.class
 com/zhao/inventory/domain/model/valueobject/Unit.class
 com/zhao/inventory/domain/model/valueobject/Quantity.class
+com/zhao/inventory/interfaces/web/GlobalExceptionHandler.class
 com/zhao/inventory/domain/repository/InventoryRepository.class

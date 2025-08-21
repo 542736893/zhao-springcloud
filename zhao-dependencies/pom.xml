@@ -23,6 +23,7 @@
         <mybatis.spring.boot.version>3.0.4</mybatis.spring.boot.version>
         <mybatis.spring.version>3.0.4</mybatis.spring.version>
         <springdoc.version>2.6.0</springdoc.version>
+        <rocketmq.spring.version>2.3.0</rocketmq.spring.version>
     </properties>
 
     <dependencyManagement>
@@ -65,6 +66,13 @@
                 <groupId>io.seata</groupId>
                 <artifactId>seata-spring-boot-starter</artifactId>
                 <version>${seata.version}</version>
+            </dependency>
+
+            <!-- RocketMQ Spring Boot Starter -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.spring.version}</version>
             </dependency>
 
             <!-- 常用库统一版本（可按需开放） -->

@@ -6,6 +6,7 @@
 /Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/interfaces/feign/AccountApi.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/interfaces/dto/response/AccountResponse.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/domain/model/valueobject/AccountStatus.java
+/Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/interfaces/web/GlobalExceptionHandler.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/infrastructure/persistence/po/AccountDO.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/domain/repository/AccountRepository.java
 /Users/zhaozb/Documents/Code/zhao-springcloud/account-service/src/main/java/com/zhao/account/AccountServiceApplication.java
