@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2025-08-20T21:09:37+0800",
-    comments = "version: 1.6.2, compiler: javac, environment: Java 17.0.16 (Homebrew)"
+    date = "2025-09-04T15:52:35+0800",
+    comments = "version: 1.6.2, compiler: Eclipse JDT (IDE) 3.42.50.v20250729-0351, environment: Java 21.0.8 (Eclipse Adoptium)"
 )
 @Component
 public class AccountAssemblerImpl implements AccountAssembler {
@@ -33,10 +33,10 @@ public class AccountAssemblerImpl implements AccountAssembler {
 
         DebitAccountCommand debitAccountCommand = new DebitAccountCommand();
 
-        debitAccountCommand.setUserId( request.getUserId() );
         debitAccountCommand.setAmount( request.getAmount() );
-        debitAccountCommand.setReason( request.getReason() );
         debitAccountCommand.setBusinessNo( request.getBusinessNo() );
+        debitAccountCommand.setReason( request.getReason() );
+        debitAccountCommand.setUserId( request.getUserId() );
 
         return debitAccountCommand;
     }
@@ -49,10 +49,10 @@ public class AccountAssemblerImpl implements AccountAssembler {
 
         CreditAccountCommand creditAccountCommand = new CreditAccountCommand();
 
-        creditAccountCommand.setUserId( request.getUserId() );
         creditAccountCommand.setAmount( request.getAmount() );
-        creditAccountCommand.setReason( request.getReason() );
         creditAccountCommand.setBusinessNo( request.getBusinessNo() );
+        creditAccountCommand.setReason( request.getReason() );
+        creditAccountCommand.setUserId( request.getUserId() );
 
         return creditAccountCommand;
     }
