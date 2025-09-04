@@ -39,6 +39,11 @@ coverage/
 **/target/generated-sources/
 **/target/generated-test-sources/
 
+# JAR files
+*.jar
+*.war
+*.ear
+
 # Node (if any UI or scripts)
 node_modules/
 npm-debug.log*
