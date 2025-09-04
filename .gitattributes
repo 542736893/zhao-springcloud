@@ -1,0 +1,6 @@
+# Track all jar files with Git LFS
+*.jar filter=lfs diff=lfs merge=lfs -text
+
+# Track other large binary files
+*.war filter=lfs diff=lfs merge=lfs -text
+*.ear filter=lfs diff=lfs merge=lfs -text
