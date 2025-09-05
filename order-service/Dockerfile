@@ -1,6 +1,6 @@
 FROM eclipse-temurin:17-jre
 WORKDIR /app
-ARG JAR_FILE=order-service/target/*.jar
+ARG JAR_FILE=target/*.jar
 
 # 设置上海时区
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \

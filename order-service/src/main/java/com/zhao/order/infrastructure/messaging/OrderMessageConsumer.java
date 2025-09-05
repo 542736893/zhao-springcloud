@@ -20,10 +20,7 @@ import org.springframework.stereotype.Component;
 @RocketMQMessageListener(
         topic = MessageConstants.ORDER_TOPIC,
         consumerGroup = MessageConstants.ORDER_CONSUMER_GROUP,
-        selectorExpression = MessageConstants.ORDER_CREATED_TAG + " || " + 
-                           MessageConstants.ORDER_UPDATED_TAG + " || " + 
-                           MessageConstants.ORDER_PAID_TAG + " || " + 
-                           MessageConstants.ORDER_CANCELLED_TAG
+        selectorExpression = "*"
 )
 public class OrderMessageConsumer implements RocketMQListener<String> {
     
