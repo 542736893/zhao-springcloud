@@ -26,18 +26,17 @@ import jakarta.validation.constraints.NotNull;
 @Validated
 @Tag(name = "消息测试接口", description = "RocketMQ消息发送和接收测试接口")
 public class MessageTestController {
-    
+
     private final OrderMessageService orderMessageService;
     
     @PostMapping("/send-order-created")
     @Operation(summary = "发送订单创建消息", description = "发送订单创建消息到RocketMQ")
     public ApiResponse<String> sendOrderCreatedMessage(@Valid @RequestBody SendMessageRequest request) {
         try {
-            log.info("接收到发送订单创建消息请求: orderId={}, orderNumber={}", 
+            log.info("接收到发送订单创建消息请求: orderId={}, orderNumber={}",
                     request.getOrderId(), request.getOrderNumber());
-            
+
             orderMessageService.sendOrderCreatedMessage(request);
-            
             return ApiResponse.ok("订单创建消息发送成功");
         } catch (Exception e) {
             log.error("发送订单创建消息失败: {}", e.getMessage(), e);

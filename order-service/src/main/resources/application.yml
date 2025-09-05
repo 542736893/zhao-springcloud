@@ -75,9 +75,16 @@ spring:
       name-server: rocketmq-namesrv:9876
       producer:
         group: ${spring.application.name}-producer
-        send-message-timeout: 3000
-        retry-times-when-send-failed: 2
-        retry-times-when-send-async-failed: 2
+      consumer:
+        group: ${spring.application.name}-consumer
+
+# RocketMQ配置（根级别）
+rocketmq:
+  name-server: rocketmq-namesrv:9876
+  producer:
+    group: ${spring.application.name}-producer
+  consumer:
+    group: ${spring.application.name}-consumer
 
 # Seata配置
 seata:

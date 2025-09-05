@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zhao.order.domain.constants.MessageConstants;
 import com.zhao.order.interfaces.dto.message.OrderMessage;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
@@ -15,23 +15,31 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@RequiredArgsConstructor
 public class OrderMessageProducer {
-    
-    private final RocketMQTemplate rocketMQTemplate;
-    private final ObjectMapper objectMapper;
+
+    @Autowired(required = false)
+    private RocketMQTemplate rocketMQTemplate;
+
+    @Autowired
+    private ObjectMapper objectMapper;
     
     /**
      * 发送订单创建消息
      */
     public void sendOrderCreatedMessage(OrderMessage orderMessage) {
+        if (rocketMQTemplate == null) {
+            log.warn("RocketMQTemplate不可用，跳过发送订单创建消息: orderId={}, orderNumber={}",
+                    orderMessage.getOrderId(), orderMessage.getOrderNumber());
+            return;
+        }
+
         try {
             String destination = MessageConstants.ORDER_TOPIC + ":" + MessageConstants.ORDER_CREATED_TAG;
             String messageBody = objectMapper.writeValueAsString(orderMessage);
-            
+
             rocketMQTemplate.convertAndSend(destination, messageBody);
-            
-            log.info("发送订单创建消息成功: orderId={}, orderNumber={}", 
+
+            log.info("发送订单创建消息成功: orderId={}, orderNumber={}",
                     orderMessage.getOrderId(), orderMessage.getOrderNumber());
         } catch (JsonProcessingException e) {
             log.error("发送订单创建消息失败，JSON序列化异常: {}", e.getMessage(), e);
